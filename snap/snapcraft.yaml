@@ -25,7 +25,7 @@ apps:
       _JAVA_OPTIONS: -Duser.home="$SNAP_USER_DATA"
     plugs:
     - desktop
-    - home
+    - network
     - network-bind
     - x11
 
@@ -37,7 +37,7 @@ apps:
       _JAVA_OPTIONS: -Duser.home="$SNAP_USER_DATA"
     plugs:
     - desktop
-    - home
+    - network
     - network-bind
     - x11       # still required even for headless operation
 
