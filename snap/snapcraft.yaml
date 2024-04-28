@@ -57,4 +57,16 @@ parts:
     - ca-certificates
     prime:
       - -usr/lib/jvm/java-11-openjdk-$SNAPCRAFT_TARGET_ARCH/lib/security/blacklisted.certs
+    after:
+    - patches
+    override-build: |
+      craftctl default
+      cp $CRAFT_STAGE/patches/launch.properties ghidra*/support/launch.properties
+
+  patches:
+    plugin: dump
+    source: patches
+    organize:
+      '*' : patches/
+    override-prime: ""
 
