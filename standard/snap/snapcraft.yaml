@@ -1,0 +1,71 @@
+name: ghidra
+version: '11.1.2'
+summary: Ghidra SRE tools
+description: 'A software reverse engineering (SRE) suite of tools developed by NSA''s
+  Research Directorate in support of the Cybersecurity mission |
+  '
+
+base: core22
+confinement: strict
+grade: stable
+license: Apache-2.0
+
+architectures:
+  - build-on: [amd64]
+    build-for: [amd64]
+  - build-on: [arm64]
+    build-for: [arm64]
+
+apps:
+  ghidra:
+    command: ghidra_${SNAPCRAFT_PROJECT_VERSION}_PUBLIC/ghidraRun
+    environment:
+      JAVA_HOME: $SNAP/usr/lib/jvm/java-17-openjdk-$SNAPCRAFT_TARGET_ARCH
+      PATH: $JAVA_HOME/bin:$PATH
+      _JAVA_OPTIONS: -Duser.home="$SNAP_USER_DATA"
+    plugs:
+    - desktop
+    - network
+    - network-bind
+    - x11
+
+  analyzeHeadless:
+    command: ghidra_${SNAPCRAFT_PROJECT_VERSION}_PUBLIC/support/analyzeHeadless
+    environment:
+      JAVA_HOME: $SNAP/usr/lib/jvm/java-17-openjdk-$SNAPCRAFT_TARGET_ARCH
+      PATH: $JAVA_HOME/bin:$PATH
+      _JAVA_OPTIONS: -Duser.home="$SNAP_USER_DATA"
+    plugs:
+    - desktop
+    - network
+    - network-bind
+    - x11       # still required even for headless operation
+
+parts:
+  ghidra:
+    plugin: dump
+    source:         https://github.com/NationalSecurityAgency/ghidra/releases/download/Ghidra_${SNAPCRAFT_PROJECT_VERSION}_build/ghidra_11.1.2_PUBLIC_20240709.zip
+    - openjdk-17-jre
+    - openjdk-17-jdk
+    - ca-certificates-java
+    - ca-certificates
+    stage-packages:
+    - openjdk-17-jre
+    - openjdk-17-jdk
+    - ca-certificates-java
+    - ca-certificates
+    prime:
+      - -usr/lib/jvm/java-11-openjdk-$SNAPCRAFT_TARGET_ARCH/lib/security/blacklisted.certs
+    after:
+    - patches
+    override-build: |
+      craftctl default
+      cp $CRAFT_STAGE/patches/launch.properties ghidra*/support/launch.properties
+
+  patches:
+    plugin: dump
+    source: patches
+    organize:
+      '*' : patches/
+    override-prime: ""
+
