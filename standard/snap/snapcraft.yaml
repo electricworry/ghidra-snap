@@ -45,6 +45,7 @@ parts:
   ghidra:
     plugin: dump
     source:         https://github.com/NationalSecurityAgency/ghidra/releases/download/Ghidra_${SNAPCRAFT_PROJECT_VERSION}_build/ghidra_11.1.2_PUBLIC_20240709.zip
+    build-packages:
     - openjdk-17-jre
     - openjdk-17-jdk
     - ca-certificates-java
