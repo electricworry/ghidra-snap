@@ -20,7 +20,7 @@ apps:
   ghidra:
     command: ghidra_${SNAPCRAFT_PROJECT_VERSION}_PUBLIC/ghidraRun
     environment:
-      JAVA_HOME: $SNAP/usr/lib/jvm/java-17-openjdk-$SNAPCRAFT_TARGET_ARCH
+      JAVA_HOME: $SNAP/usr/lib/jvm/java-21-openjdk-$SNAPCRAFT_TARGET_ARCH
       PATH: $JAVA_HOME/bin:$PATH
       _JAVA_OPTIONS: -Duser.home="$SNAP_USER_DATA"
     plugs:
@@ -32,7 +32,7 @@ apps:
   analyzeHeadless:
     command: ghidra_${SNAPCRAFT_PROJECT_VERSION}_PUBLIC/support/analyzeHeadless
     environment:
-      JAVA_HOME: $SNAP/usr/lib/jvm/java-17-openjdk-$SNAPCRAFT_TARGET_ARCH
+      JAVA_HOME: $SNAP/usr/lib/jvm/java-21-openjdk-$SNAPCRAFT_TARGET_ARCH
       PATH: $JAVA_HOME/bin:$PATH
       _JAVA_OPTIONS: -Duser.home="$SNAP_USER_DATA"
     plugs:
@@ -46,13 +46,13 @@ parts:
     plugin: dump
     source:         https://github.com/NationalSecurityAgency/ghidra/releases/download/Ghidra_${SNAPCRAFT_PROJECT_VERSION}_build/ghidra_11.1.2_PUBLIC_20240709.zip
     build-packages:
-    - openjdk-17-jre
-    - openjdk-17-jdk
+    - openjdk-21-jre
+    - openjdk-21-jdk
     - ca-certificates-java
     - ca-certificates
     stage-packages:
-    - openjdk-17-jre
-    - openjdk-17-jdk
+    - openjdk-21-jre
+    - openjdk-21-jdk
     - ca-certificates-java
     - ca-certificates
     prime:
