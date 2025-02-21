@@ -3,3 +3,12 @@ This is an un-official snap of ghidra from https://ghidra-sre.org/
 Not all ghidra functionality has been fully tested under strict confinement
 
 Contributions welcome
+
+Fleeto build of 11.3 due to remote server username field regression.
+
+If fonts are wrong, run:
+
+```
+snap run --shell ghidra
+rm .java/fonts/21.0.6/*
+```

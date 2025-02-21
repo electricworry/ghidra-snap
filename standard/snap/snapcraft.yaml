@@ -1,5 +1,5 @@
 name: ghidra
-version: '11.1.2'
+version: '11.3.1'
 summary: Ghidra SRE tools
 description: 'A software reverse engineering (SRE) suite of tools developed by NSA''s
   Research Directorate in support of the Cybersecurity mission |
@@ -44,7 +44,7 @@ apps:
 parts:
   ghidra:
     plugin: dump
-    source:         https://github.com/NationalSecurityAgency/ghidra/releases/download/Ghidra_${SNAPCRAFT_PROJECT_VERSION}_build/ghidra_11.1.2_PUBLIC_20240709.zip
+    source: https://github.com/NationalSecurityAgency/ghidra/releases/download/Ghidra_${SNAPCRAFT_PROJECT_VERSION}_build/ghidra_${SNAPCRAFT_PROJECT_VERSION}_PUBLIC_20250219.zip
     build-packages:
     - openjdk-21-jre
     - openjdk-21-jdk
